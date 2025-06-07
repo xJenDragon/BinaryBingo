@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&family=Pacifico&display=swap">  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Bubblegum+Sans&display=swap">  
+  <title>iWiCS Bits 'n Love Bingo Presents - Bits 'n Love Bingo</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-image: url('wallpaper3.png');
+      background-repeat: repeat;
+      background-size: cover;
+      color: #e864af; 
+      font-family: 'Bubblegum Sans', cursive;';
+      text-align: center;
+      margin: 0;
+    }
+
+    .main-container {
+      max-width: 600px;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 30px;
+      border: 2px solid #e864af;
+    }
+
+    .subtitle {
+      font-size: 1.2em;
+      margin-bottom: 5px;
+    }
+
+    .title {
+      font-size: 5em;
+      margin-bottom: 5px;
+      margin-top: 0;
+    }
+
+    .binary-number {
+      font-size: 10em;
+      margin-bottom: 20px;
+      transition: color 0.5s;
+      font-family: 'Bubblegum Sans';
+    }
+
+    .generate-button {
+      font-size: 2em;
+      padding: 15px 30px;
+      background-color: #e864af;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      border-radius: 5px;
+      font-family: 'Bubblegum Sans'; 
+      color: #ffffff;
+    }
+
+    .generate-button:hover {
+      background-color: #e864af;
+    }
+
+    .empty-container {
+      height: 30px;
+    }
+    
+
+    .tracker-container {
+      background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent white */
+      text-align: center;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 200px;
+      /*width: 100%;*/
+      transition: max-height 0.5s;
+      overflow: hidden;
+      border: 2px solid #e864af;
+      margin-left: 20px;
+      margin-bottom: 20px;
+      overflow-y: auto;
+      max-height: 300px;
+    }
+
+    .bingo-tracker p {
+      font-family: 'Bubblegum Sans';
+      font-size: 3em;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 10px;
+      max-height: 275px;
+      overflow-y: auto;
+    }
+
+    .bingo-tracker ul li {
+      font-family: 'Bubblegum Sans';
+      font-size: 3em;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 10px;
+      list-style: none;
+      color: #000;
+    }
+
+    .bingo-button-container {
+      position: fixed;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .bingo-animation {
+      font-size: 15em; /* Increased font size of animation */
+      color: #000000; /* Set color to black */
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      animation: bingoAnimation 2s ease-in-out forwards; /* Increased animation duration to 2 seconds */
+      display: none;
+    }
+
+    @keyframes bingoAnimation {
+      0% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+      }
+    }
+
+    img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .bingo-check-container {
+      position: fixed;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+    }
+
+    .bingo-check-inputs {
+      display: flex;
+      margin-right: 10px; 
+    }
+    
+    .bingo-number-input {
+      width: 40px;
+      height: 40px;
+      margin: 5px;
+      font-size: 1em;
+      text-align: center;
+      padding: 5px;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .bingo-button {
+      font-size: 2em;
+      padding: 15px 30px;
+      background-color: #e864af;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      border-radius: 5px;
+      font-family: 'Bubblegum Sans'; 
+      color: #ffffff;
+    }
+
+    .bingo-button:hover {
+      background-color: #e864af;
+    }
+
+
+    @font-face {
+      font-family: 'Bubblegum Sans';
+      src: url('BubblegumSans-Regular.ttf') format('truetype');
+    }
+
+    @font-face {
+      font-family: 'Bubblegum Sans';
+      src: url('BubblegumSans-Regular.ttf') format('truetype');
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main-container">
+    <img src="sanrio.png" alt="Christmas" width="100%">
+    <div class="subtitle">WiCS Presents</div>
+    <h1 class="title">Bits 'n Love Bingo</h1>
+    <div class="binary-number color-black" id="numberDisplay" onclick="generateBinaryNumber()">--</div>
+    <button class="generate-button" onclick="generateBinaryNumber()">Happy Valentine's Day!</button>
+  </div>
+
+  <div class="empty-container"></div> <!-- Added empty container for spacing -->
+
+  <div class="tracker-container">
+    <!-- Bingo Tracker -->
+    <div class="bingo-tracker">
+      <p>Tracker:</p>
+      <ul id="bingoTracker"></ul>
+    </div>
+  </div>
+
+  <div class="empty-container"></div> <!-- Added empty container for spacing -->
+
+  <div class="bingo-check-container">
+    <div class="bingo-check-inputs">
+      <input class="bingo-number-input" type="text" maxlength="2" placeholder="-" id="input1">
+      <input class="bingo-number-input" type="text" maxlength="2" placeholder="-" id="input2">
+      <input class="bingo-number-input" type="text" maxlength="2" placeholder="-" id="input3">
+      <input class="bingo-number-input" type="text" maxlength="2" placeholder="-" id="input4">
+      <input class="bingo-number-input" type="text" maxlength="2" placeholder="-" id="input5">
+    </div>
+    <button class="bingo-button" onclick="checkBingo()">Bingo</button>
+  </div>
+  
+  <!-- Bingo Animation -->
+  <div class="bingo-animation" id="bingoAnimation">BINGO!</div>
+
+  <script>
+    var usedNumbers = [];
+
+    function generateBinaryNumber() {
+      if (usedNumbers.length === 75) {
+        alert("All numbers used!");
+        return;
+      }
+
+      var randomNumber;
+      do {
+        randomNumber = Math.floor(Math.random() * 75) + 1;
+      } while (usedNumbers.includes(randomNumber));
+
+      usedNumbers.push(randomNumber);
+
+      var binaryNumber = randomNumber.toString(2);
+      document.getElementById('numberDisplay').textContent = binaryNumber;
+      document.getElementById('numberDisplay').style.color = "#000000"; /* Change text */
+
+      var bingoTracker = document.getElementById('bingoTracker');
+      var listItem = document.createElement('li');
+      listItem.textContent = randomNumber;
+      bingoTracker.appendChild(listItem);
+
+      var trackerContainer = document.querySelector('.tracker-container');
+      var newHeight = bingoTracker.clientHeight + 10;
+
+      // Set a maximum height for the tracker container
+      var maxContainerHeight = document.querySelector('.main-container').clientHeight;
+
+      if (newHeight <= maxContainerHeight) {
+        trackerContainer.style.maxHeight = newHeight + 'px';
+      } else {
+        trackerContainer.style.maxHeight = maxContainerHeight + 'px';
+        trackerContainer.style.overflowY = 'auto';
+      }
+    }
+
+    function clearBingoTracker() {
+      usedNumbers = [];
+      document.getElementById('bingoTracker').innerHTML = "";
+      var bingoAnimation = document.getElementById('bingoAnimation');
+      bingoAnimation.style.display = 'block';
+      setTimeout(function () {
+        bingoAnimation.style.display = 'none';
+        document.getElementById('numberDisplay').textContent = '--'; 
+      }, 1000);
+    }
+
+    function checkBingo() {
+      var inputNumbers = [
+        document.getElementById('input1').value,
+        document.getElementById('input2').value,
+        document.getElementById('input3').value,
+        document.getElementById('input4').value,
+        document.getElementById('input5').value
+      ];
+
+      // Get numbers from the tracker
+      var trackerNumbers = Array.from(document.querySelectorAll('.bingo-tracker ul li')).map(li => li.textContent);
+
+      // Check if entered numbers match the tracker numbers
+      var isBingo = inputNumbers.every(num => trackerNumbers.includes(num));
+
+      if (isBingo) {
+        playBingoAnimation();
+      } else {
+        alert("Not a Bingo!");
+      }
+    }
+
+    function playBingoAnimation() {
+      // Show Bingo Animation
+      var bingoAnimation = document.getElementById('bingoAnimation');
+      bingoAnimation.style.display = 'block';
+      setTimeout(function () {
+        bingoAnimation.style.display = 'none';
+        clearBingoTracker(); 
+        clearBingoInputs(); 
+      }, 1000);
+    }
+
+
+    function clearBingoInputs() {
+      for (let i = 1; i <= 5; i++) {
+        document.getElementById('input' + i).value = '';
+      }
+    }
+
+
+  </script>
+</body>
+
+</html>
