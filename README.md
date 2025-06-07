@@ -56,7 +56,6 @@ Special thanks to the Women in Computer Science student organization for inspiri
 ## Contact
 
 Created by Jennifer Mondragon  
-[jmondragon6@islander.tamucc.edu](mailto:jmondragon6@islander.tamucc.edu)
 
 ---
 
