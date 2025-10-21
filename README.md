@@ -2,6 +2,7 @@
 
 Bits 'n Love Bingo is a fun, interactive bingo number generator with a twist — it displays the numbers in binary! Built with HTML, CSS, and JavaScript, this project was created for the Women in Computer Science student organization as a creative way to engage participants.
 
+Check out the Live Google Site HERE -> https://sites.google.com/view/wics-tamucc-bingo/home 
 ---
 
 ## Features
