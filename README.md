@@ -39,20 +39,6 @@ Bits 'n Love Bingo is a fun, interactive bingo number generator with a twist —
 - CSS3 (including Google Fonts)
 - JavaScript (vanilla)
 
----
-
-## License
-
-This project is open-source and available under the MIT License.
-
----
-
-## Acknowledgments
-
-Special thanks to the Women in Computer Science student organization for inspiring this project!
-
----
-
 ## Contact
 
 Created by Jennifer Mondragon  
